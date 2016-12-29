@@ -1,5 +1,6 @@
 import sys
-sys.setrecursionlimit(3000)
+RECURSION_LIMIT = 3000
+sys.setrecursionlimit(RECURSION_LIMIT)
 # Recursive solution
 def knapsack(items, capacity,i=0):
     if i == len(items):
