@@ -2,13 +2,16 @@ import sys
 RECURSION_LIMIT = 3000
 sys.setrecursionlimit(RECURSION_LIMIT)
 # Recursive solution
-def knapsack(items, capacity,i=0):
-    if i == len(items):
+def knapsack(items, knapsack_arr, capacity, i=0):
+    if i == len(items) or capacity < 0:
         return 0
+    if knapsack_arr[i][capacity] > 0:
+        return knapsack_arr[i][capacity]
     if items[i] <= capacity:
-        return max(items[i] + knapsack(items, capacity-items[i], i), knapsack(items, capacity, i+1))
+        knapsack_arr[i][capacity] = max(items[i] + knapsack(items, knapsack_arr, capacity-items[i], i), knapsack(items, knapsack_arr, capacity, i+1))
     else:
-        return knapsack(items, capacity,i+1)
+        knapsack_arr[i][capacity] = knapsack(items, knapsack_arr, capacity, i+1)
+    return knapsack_arr[i][capacity]
 
 
 if __name__ == "__main__":
@@ -18,4 +21,5 @@ if __name__ == "__main__":
         number_of_elems, expected_sum = (int(n) for n in line.split())
         line = raw_input()
         items = [int(n) for n in line.split()]
-        print knapsack(items, expected_sum)
+        knapsack_arr = [[0 for i in range(expected_sum+1)] for j in range(len(items))]
+        print knapsack(items, knapsack_arr, expected_sum)
