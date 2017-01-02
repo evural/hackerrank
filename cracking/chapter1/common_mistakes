@@ -1,0 +1,4 @@
+1. Forgetting ":" character after if statements
+2. false-true instead of False-True
+3. characters are converted to integer with ord() function, not int()
+
