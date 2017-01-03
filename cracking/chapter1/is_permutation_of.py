@@ -1,3 +1,7 @@
+# 1. put chars of 1st string to a hash table (k,v) -> (char,count)
+# 2. Iterate over 2nd array and decrement char values from hash table
+# 3. Iterate over the hash table and check if the all values are equal to 0
+
 def is_permutation_of(str1, str2):
     if len(str1) != len(str2):
         return False
