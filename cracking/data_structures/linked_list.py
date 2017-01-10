@@ -36,6 +36,8 @@ class LinkedList:
         self.head = new_node   
 
     def insert_back(self, data):
+        if self.get_size() == 0:
+            return self.insert_front(data)
         new_node = Node(data)
         last_node = self.get_last_node()
         last_node.next = new_node
