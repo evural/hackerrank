@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/home/ersan/Desktop/algorithm/hackerrank/cracking/data_structures')
+sys.path.append('/home/ersan/Desktop/algorithms/hackerrank/cracking/data_structures')
 from linked_list import LinkedList, Node
 
 def remove_node(node):

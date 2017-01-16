@@ -3,7 +3,7 @@
 # O(N) space
 
 import sys
-sys.path.append('/home/ersan/Desktop/algorithm/hackerrank/cracking/data_structures')
+sys.path.append('/home/ersan/Desktop/algorithms/hackerrank/cracking/data_structures')
 from linked_list import LinkedList
 
 
@@ -12,12 +12,12 @@ def remove_dups(linked_list):
         return
     hash_table = {}
     node = linked_list.head
+    hash_table[node.data] = 1
     while(node.next != None):
-        next_node = node.next
-        hash_table[node.data] = 1
         if node.next.data in hash_table:
             node.next = node.next.next
         else:
+            hash_table[node.next.data] = 1
             node = node.next
 
 if __name__ == "__main__":
