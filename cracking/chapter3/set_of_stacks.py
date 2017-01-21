@@ -18,6 +18,13 @@ class SetofStacks:
         if self.stacks[len(self.stacks) - 1].is_empty():
             del self.stacks[len(self.stacks) - 1]
         return data
+    def pop_at(self, i):
+        if len(self.stacks) <= i:
+            return None
+        data = self.stacks[i].pop()
+        if self.stacks[i].is_empty():
+            del self.stacks[i]
+        return data
     def peek(self):
         if self.stacks == []:
             return None
@@ -31,7 +38,7 @@ if __name__ == "__main__":
     stack.push(8)
     stack.push(9)
     stack.push(4)
-    stack.pop()
-    stack.pop()
+    stack.pop_at(1)
+    stack.pop_at(1)
     print len(stack.stacks)
     print stack.peek()
