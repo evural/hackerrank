@@ -43,7 +43,7 @@ class Stack:
         if self.is_empty():
             raise EmptyStackError("Stack is empty: cannot peek from empty stack!")
             return None
-        return self.arr[0]
+        return self.arr[len(self.arr) - 1]
         
         
 if __name__ == "__main__":
