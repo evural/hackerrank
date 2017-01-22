@@ -19,7 +19,7 @@ class LinkedList:
     def get_node_at(self, index):
         i = 0
         node = self.head
-        while(node != None and i <= index):
+        while(node != None and i < index):
             node = node.next
             i += 1
         return node
@@ -88,4 +88,4 @@ class LinkedList:
 if __name__ == "__main__":
     linked_list = LinkedList()
     linked_list.insert_front(1)
-    print linked_list
+    print linked_list.get_node_at(0).data
