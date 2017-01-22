@@ -22,9 +22,14 @@ class SetofStacks:
         if len(self.stacks) <= i:
             return None
         data = self.stacks[i].pop()
+        self.shift(i)
         if self.stacks[i].is_empty():
             del self.stacks[i]
         return data
+    def shift(self, i):
+        if i >= len(self.stacks) - 1:
+            return
+        self.stacks[i].push(self.stacks[i+1][0])
     def peek(self):
         if self.stacks == []:
             return None

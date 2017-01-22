@@ -7,43 +7,42 @@ class FullStackError(Exception):
         super(FullStackError, self).__init__(message)
 
 class Stack:
-    def __init__(self, max_size=0):
-        self.arr = []
-        self.max_size = max_size
+    def __init__(self, capacity=0):
+        self.arr = [None] * capacity
+        self.capacity = capacity
+        self.top = -1
+        self.size = 0
 
     def is_empty(self):
-        if self.len() == 0:
-            return True
-        return False
+        return self.get_size() == 0
 
     def is_full(self):
-        if self.len() >= self.max_size:
-            return True
-        return False
+        return self.get_size() >= self.capacity
 
-    def len(self):
-        return len(self.arr)
+    def get_size(self):
+        return self.size
 
     def push(self, element):
         if self.is_full():
             raise FullStackError("Stack is full: cannot push to a full stack")
-        else:
-            self.arr.append(element)
+        self.top += 1
+        self.arr[self.top] = element
+        self.size += 1
         return self.arr 
 
     def pop(self):
         if self.is_empty():
             raise EmptyStackError("Stack is empty: cannot pop from an empty stack!")
-            return None
-        elem = self.arr[len(self.arr) - 1]
-        del self.arr[len(self.arr) - 1]
+        elem = self.arr[self.top]
+        self.top -= 1
+        self.size -= 1
         return elem
 
     def peek(self):
         if self.is_empty():
             raise EmptyStackError("Stack is empty: cannot peek from empty stack!")
             return None
-        return self.arr[len(self.arr) - 1]
+        return self.arr[self.top]
         
         
 if __name__ == "__main__":
@@ -61,3 +60,4 @@ if __name__ == "__main__":
     stack.push(6)
     value = stack.pop()
     print value
+    print stack.peek()
