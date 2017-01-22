@@ -21,7 +21,7 @@ class Stack:
         return self.size == 0
     def is_full(self):
         return self.size >= self.capacity
-    def size(self):
+    def get_size(self):
         return self.size
     def push(self, data):
         if self.is_full():

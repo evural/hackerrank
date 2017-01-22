@@ -7,30 +7,32 @@ class QueueEmptyError(Exception):
         super(QueueEmptyError, self).__init__(message)
 
 class Queue:
-    def __init__(self, max_size):
-        self.arr = []
-        self.max_size = max_size
+    def __init__(self, capacity):
+        self.arr = [None] * capacity
+        self.capacity = capacity
+        self.bottom = 0
+        self.top = 0
+        self.size = 0
 
     def is_empty(self):
-        if len(self.arr) == 0:
-            return True
-        return False 
+        return self.size == 0
 
     def is_full(self):
-        if len(self.arr) >= self.max_size:
-            return True
-        return False
+        return self.size >= self.capacity
 
     def enqueue(self, element):
         if self.is_full():
             raise QueueFullError("Queue is full: cannot enqueue in a full queue")
-        self.arr.append(element)
+        self.arr[self.top] = element
+        self.top = (self.top + 1) % self.capacity
+        self.size += 1
 
     def dequeue(self):
         if self.is_empty():
             raise QueueEmptyError("Queue is empty: cannot dequeue from an empty queue")
-        elem = self.arr[len(self.arr) - 1]
-        del self.arr[len(self.arr) - 1]
+        elem = self.arr[self.bottom]
+        self.bottom = (self.bottom + 1) % self.capacity
+        self.size -= 1
         return elem
 
 
