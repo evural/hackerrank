@@ -49,6 +49,20 @@ class Stack:
             raise EmptyStackError("Stack is empty")
         node = self.arr[self.top]
         return node.data
+    def __str__(self):
+        if self.size == 0:
+            return ""
+        return_arr = []
+        if self.bottom <= self.top:
+            l_index = self.bottom
+            r_index = (self.top + 1) % (self.capacity+1)
+            return_arr = self.arr[l_index:r_index]
+        else:
+            l_index = (self.bottom + 1) % (self.capacity+1)
+            r_index = self.top
+            return_arr = self.arr[r_index:self.capacity] + self.arr[0:l_index]
+        data_values = [str(x.data) for x in return_arr]
+        return " ".join(data_values)
 
 
 if __name__ == "__main__":
